@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+  background-image: url('../../public/images/chalkboard.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
