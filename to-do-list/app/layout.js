@@ -1,5 +1,8 @@
 import { Inter } from "next/font/google";
-import Table from "./Table";
+import Table from "./components/Table";
+import Modal from "./components/Modal";
+import styles from "./page.module.css"
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,8 +15,12 @@ export default function Layout() {
 
   return (
     <html lang="en">
+      
       <body className={inter.className}>
+        <h1 className={styles.center}>Next-gen Task Manager</h1>
         <Table/>
+        <br/>
+        <Modal/>
       </body>
     </html>
   );
