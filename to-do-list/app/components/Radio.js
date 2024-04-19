@@ -31,7 +31,7 @@ const optionsWithDisabled = [
         disabled: true,
     },
 ];
-const App = () => {
+const Priority = () => {
     const [value, setValue] = useState('Low');
 
     const onChange = ({ target: { value } }) => {
@@ -47,4 +47,4 @@ const App = () => {
         </>
     );
 };
-export default App;
+export default Priority;

@@ -1,37 +1,46 @@
 "use client";
-import React, { useState } from 'react';
-import { FloatButton, Modal, Input } from 'antd';
+import React, { useReducer, useState } from 'react';
+import { FloatButton, Modal, Input, Button } from 'antd';
 import { FileTextOutlined } from '@ant-design/icons';
-import Radio from './Radio';
+import Priority from './Radio';
 
 
-const App = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = () => {
-        setIsModalOpen(true);
+
+const InputModal = ({ visible, onCancel, onOk, value }) => {
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
     };
+
     const handleOk = () => {
-        setIsModalOpen(false);
+        onOk(inputValue);
+        setInputValue('');
     };
-    const handleCancel = () => {
-        setIsModalOpen(false);
-    };
+
+
+
     return (
         <>
-            <FloatButton
-                icon={<FileTextOutlined />}
-                onClick={showModal}
-                description="New Task"
-                type='primary'
-                shape="square"
-                style={{
-                    right: 24,
-                }}
-            />
-            <Modal title="Add your task" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <b>Task:</b><Input placeholder='Enter your task' />
+            <Modal title="Enter Text"
+                visible={visible}
+                onCancel={onCancel}
+                footer={[
+                    <Button key="cancel" onClick={onCancel}>
+                        Cancel
+                    </Button>,
+                    <Button key="ok" type="primary" onClick={handleOk}>
+                        OK
+                    </Button>,
+                ]}>
+                <b>Task:</b><Input
+                    type="text"
+                    placeholder='Enter your task'
+                    value={inputValue}
+                    onChange={handleInputChange}
+                />
                 <br /><br />
-                <b>Select priority:</b><Radio />
+                <b>Select priority:</b><Priority/>
                 <br />
                 <b>Assigned to:</b><Input placeholder='Enter who to assign the task to' />
                 <br />
@@ -42,4 +51,4 @@ const App = () => {
         </>
     );
 };
-export default App;
+export default InputModal;

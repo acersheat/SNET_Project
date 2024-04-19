@@ -79,7 +79,7 @@ const App = () => {
     },
   ];
   const [data, setData] = useState([
-    { key: '1', task: 'ananin amina koymaca', priority: 'high', assigned: '123 Elm Street', status: '123 Elm Street' },
+    { key: '1', task: 'ananin amina koymaca', priority: 'High', assigned: '123 Elm Street', status: '123 Elm Street' },
     { key: '2', task: 'listen berfin yappin', priority: 'low', assigned: '123 Elm Street', status: '123 Elm Street' },
     { key: '3', task: '78 dk tuvaltte sic', priority: 'medium', assigned: '123 Elm Street', status: '123 Elm Street' },
     { key: '4', task: 'bulasik yika', priority: 'medium', assigned: '123 Elm Street', status: '123 Elm Street' },
@@ -87,8 +87,8 @@ const App = () => {
   ]);
 
   // Function to add a new row
-  const addRow = () => {
-    const newRow = { key: String(data.length + 1), task: 'yarramin basi', priority: 'low', assigned: 'bana', status: 'in progres' };
+  const addRow = (enteredTask) => {
+    const newRow = { key: String(data.length + 1), task: enteredTask, priority: 'low', assigned: 'bana', status: 'in progres' };
     setData([...data, newRow]);
   };
   return (

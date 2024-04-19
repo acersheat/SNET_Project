@@ -2,6 +2,9 @@ import { Inter } from "next/font/google";
 import Table from "./components/Table";
 import Modal from "./components/Modal";
 import styles from "./page.module.css"
+import { FloatButton } from 'antd';
+import { FileTextOutlined } from '@ant-design/icons';
+import Page from "./components/page";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,9 +21,7 @@ export default function Layout() {
       
       <body className={inter.className}>
         <h1 className={styles.center}>Next-gen Task Manager</h1>
-        <Table/>
-        <br/>
-        <Modal/>
+        <Page/>
       </body>
     </html>
   );
