@@ -1,12 +1,13 @@
 "use client";
-import React, { useReducer, useState } from 'react';
-import { FloatButton, Modal, Input, Button } from 'antd';
-import { FileTextOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
+import { Modal, Input, Button } from 'antd';
 import Priority from './Radio';
 
 
 
-const InputModal = ({ visible, onCancel, onOk, value }) => {
+
+
+const InputModal = ({visible, onCancel, onOk}) => {
     const [inputValue, setInputValue] = useState('');
 
     const handleInputChange = (e) => {
@@ -15,14 +16,17 @@ const InputModal = ({ visible, onCancel, onOk, value }) => {
 
     const handleOk = () => {
         onOk(inputValue);
-        setInputValue('');
+        setInputValue('');  
     };
 
+    
 
 
     return (
         <>
-            <Modal title="Enter Text"
+
+            <Modal 
+                title="Enter Task"
                 visible={visible}
                 onCancel={onCancel}
                 footer={[
@@ -40,15 +44,19 @@ const InputModal = ({ visible, onCancel, onOk, value }) => {
                     onChange={handleInputChange}
                 />
                 <br /><br />
-                <b>Select priority:</b><Priority/>
+                <b>Select priority:</b><Priority />
                 <br />
                 <b>Assigned to:</b><Input placeholder='Enter who to assign the task to' />
                 <br />
+                
 
-
-
+                
             </Modal>
+            
+            
         </>
+
+
     );
 };
 export default InputModal;

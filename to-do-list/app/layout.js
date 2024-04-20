@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
-import Table from "./components/Table";
-import Modal from "./components/Modal";
+import Modal from "./components/InputModal";
 import styles from "./page.module.css"
 import { FloatButton } from 'antd';
 import { FileTextOutlined } from '@ant-design/icons';
