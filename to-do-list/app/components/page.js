@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "../page.module.css"
-import { FloatButton, Table, Radio, Modal, Button, Input } from 'antd';
+import { FloatButton, Table, Radio, Modal, Button, Input, Tag } from 'antd';
 import { FileTextOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 
@@ -57,6 +57,21 @@ export default function Page() {
 
             ],
             onFilter: (value, record) => record.priority.indexOf(value) === 0,
+            render: (text) => {
+                let color;
+                if (text === 'High') {
+                    color = 'red'
+                } else if (text === 'Medium') {
+                    color = 'yellow'
+                } else {
+                    color = 'green'
+                }
+                return (
+                    <Tag color={color} key={text}>
+                        {text.toUpperCase()}
+                    </Tag>
+                )
+            }
         },
         {
             title: 'Assigned',
@@ -66,32 +81,32 @@ export default function Page() {
         {
             title: 'Date added',
             dataIndex: 'time',
-            sorter: (a,b) => new Date(a.time) - new Date(b.time),
+            sorter: (a, b) => new Date(a.time) - new Date(b.time),
 
         },
     ];
     const [data, setData] = useState([
-        { key: '1', task: 'Write Thesis', priority: 'High', assigned: 'Max Mustermann', time: new Date(86400000).toLocaleString()},
-        { key: '2', task: 'Clean the dishes', priority: 'Low', assigned: 'Jolene', time: new Date(864078000).toLocaleString()},
-        { key: '3', task: 'Go for a run', priority: 'Medium', assigned: 'Florian', time: new Date(86478345000).toLocaleString()},
-        { key: '4', task: 'Do nothing for 1 hour', priority: 'High', assigned: 'Christian', time: new Date(37485943685).toLocaleString()},
+        { key: '1', task: 'Write Thesis', priority: 'High', assigned: 'Max Mustermann', time: new Date(86400000).toLocaleString() },
+        { key: '2', task: 'Clean the dishes', priority: 'Low', assigned: 'Jolene', time: new Date(864078000).toLocaleString() },
+        { key: '3', task: 'Go for a run', priority: 'Medium', assigned: 'Florian', time: new Date(86478345000).toLocaleString() },
+        { key: '4', task: 'Do nothing for 1 hour', priority: 'High', assigned: 'Christian', time: new Date(37485943685).toLocaleString() },
         // Other initial rows
     ]);
 
     const addRow = () => {
 
-        const newRow = { key: String(data.length + 1), task: inputTask, priority: prio, assigned: inputName, time: currentDate()};
+        const newRow = { key: String(data.length + 1), task: inputTask, priority: prio, assigned: inputName, time: currentDate() };
         setData([...data, newRow]);
     };
 
 
-    const handlePrioChange = ({ target: { value } }) =>{
+    const handlePrioChange = ({ target: { value } }) => {
         setPrio(value)
     }
     const handleNameChange = (e) => {
         setInputName(e.target.value);
     };
-    
+
     const handleInputChange = (e) => {
         setInputTask(e.target.value);
     };
@@ -105,7 +120,7 @@ export default function Page() {
         setModalVisible(false);
     };
 
-    
+
 
     const currentDate = () => {
         return new Date().toLocaleString()
@@ -142,28 +157,28 @@ export default function Page() {
                         />
                         <br /><br />
                         <b>Select priority:</b>
-                        <br/>
-                        <Radio.Group options={options} onChange={handlePrioChange} value={prio} optionType="button"/>
+                        <br />
+                        <Radio.Group options={options} onChange={handlePrioChange} value={prio} optionType="button" />
                         <br />
                         <br />
-                        <b>Assigned to:</b><Input 
-                        type="text"
-                        placeholder='Enter who to assign the task to' 
-                        value={inputName}
-                        onChange={handleNameChange}/>
+                        <b>Assigned to:</b><Input
+                            type="text"
+                            placeholder='Enter who to assign the task to'
+                            value={inputName}
+                            onChange={handleNameChange} />
                         <br />
                     </Modal>
-                    </div>
-                    <FloatButton
-                        icon={<FileTextOutlined />}
-                        onClick={() => setModalVisible(true)}
-                        description="New Task"
-                        type='primary'
-                        shape="square"
-                        style={{
-                            right: 24,
-                        }}
-                    />
+                </div>
+                <FloatButton
+                    icon={<FileTextOutlined />}
+                    onClick={() => setModalVisible(true)}
+                    description="New Task"
+                    type='primary'
+                    shape="square"
+                    style={{
+                        right: 24,
+                    }}
+                />
             </body>
         </html>
     );
