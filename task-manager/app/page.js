@@ -2,12 +2,15 @@
 import { FloatButton, Table, Radio, Modal, Button, Input, Tag } from 'antd';
 import { FileTextOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import Link from 'next/link';
+import styles from './page.module.css';
 
 
 
 
-export default function Page() {
-    const [modalVisible, setModalVisible] = useState(false); 
+export default function Home() {
+
+    const [modalVisible, setModalVisible] = useState(false);
     const [inputTask, setInputTask] = useState('');
     const [inputName, setInputName] = useState('');
     const [prio, setPrio] = useState('Low');
@@ -16,7 +19,7 @@ export default function Page() {
         { key: '2', task: 'Clean the dishes', priority: 'Low', assigned: 'Jolene', time: new Date(864078000).toLocaleString() },
         { key: '3', task: 'Go for a run', priority: 'Medium', assigned: 'Florian', time: new Date(86478345000).toLocaleString() },
         { key: '4', task: 'Do nothing for 1 hour', priority: 'High', assigned: 'Christian', time: new Date(37485943685).toLocaleString() },
-    
+
     ]);
 
     const options = [
@@ -80,6 +83,7 @@ export default function Page() {
         {
             title: 'Assigned',
             dataIndex: 'assigned',
+            sorter: (a, b) => a.assigned.toUpperCase > b.assigned.toUpperCase,
 
         },
         {
@@ -89,7 +93,7 @@ export default function Page() {
 
         },
     ];
-    
+
 
     const addRow = () => {
 
@@ -121,7 +125,8 @@ export default function Page() {
     return (
         <html lang="en">
 
-            <body >
+            <body>
+                <h1 className={styles.center}>Next-gen Task Manager</h1>
                 <Table columns={columns}
                     dataSource={data}
                     pagination={false}
@@ -169,9 +174,11 @@ export default function Page() {
                     shape="square"
                     style={{
                         right: 24,
-                    }}
-                />
+                    }}></FloatButton>
+
+                    
             </body>
         </html>
     );
 }
+

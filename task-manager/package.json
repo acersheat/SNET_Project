@@ -1,17 +1,29 @@
 {
-  "name": "to-do-list",
+  "name": "task-manager",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "install antd && prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.13.0",
     "antd": "^5.16.2",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.2",
     "next": "^14.2.2",
+    "pg": "^8.11.5",
     "react": "^18",
     "react-dom": "^18"
+  },
+  "devDependencies": {
+    "prisma": "^5.13.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.2"
   }
 }
